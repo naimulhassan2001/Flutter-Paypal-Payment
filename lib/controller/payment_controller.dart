@@ -1,25 +1,21 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_paypal/utils/screct_kay.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import 'package:get/get.dart';
 
-class PaymentController extends GetxController{
+class PaymentController extends GetxController {
   TextEditingController amountController = TextEditingController();
 
-
   static PaymentController get instance => Get.put(PaymentController());
-
 
   paymentPaypal() {
     return PaypalCheckoutView(
       sandboxMode: true,
-      clientId:
-      "AaCH5bLv0gDhHMrW3gbqchECbFFJjLnkhRmfeQlGuFdp441uPkiXEnuW5MS5QHndFS2JEMWhsogkcSRm",
-      secretKey:
-      "EOu1iAOF9P0uDwkyKfWUfzUB4WjfUAi38GEi1U2QjdjP8MfQRNAZ5JoQGDwvDJunDxTFZPL15DVKpSxF",
+      clientId: clientId,
+      secretKey: secretKey,
       transactions: const [
         {
           "amount": {
@@ -58,7 +54,6 @@ class PaymentController extends GetxController{
         if (kDebugMode) {
           print("onError: $error");
         }
-
       },
       onCancel: () {
         Navigator.pop(Get.context!);
@@ -67,7 +62,6 @@ class PaymentController extends GetxController{
           print('cancelled:');
         }
       },
-    ) ;
+    );
   }
-
 }
